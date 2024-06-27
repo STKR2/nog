@@ -60,7 +60,7 @@ async def gen_session(
     except ListenerTimeout:
         return await Opleech.send_message(
             user_id,
-            "Limit Setiap 5 Menit.\n\n❖ Mohon Mulai Kembali.",
+            "- وين رحت ترى تأخرت .",
             reply_markup=retry_key,
         )
 
@@ -87,26 +87,27 @@ async def gen_session(
     except FloodWait as f:
         return await Opleech.send_message(
             user_id,
-            f"Gagal Mengirimkan Kode.\n\n❖ Mohon Menunggu {f.value or f.x} Detik Dan Coba Lagi.",
+            f" - الحساب بلع فلود انتضر {f.value or f.x} ثانية وحاول مرة أخرى .",
             reply_markup=retry_key,
         )
     except (ApiIdInvalid, ApiIdInvalidError, ApiIdInvalid1):
         return await Opleech.send_message(
             user_id,
-            "API_ID Atau API_HASH Tidak Valid.\n\n❖ Mohon Mulai Kembali..",
+            "- الايدي ايبي والايبي هاش غلط او انت داز وهميات .",
             reply_markup=retry_key,
         )
     except (PhoneNumberInvalid, PhoneNumberInvalidError, PhoneNumberInvalid1):
         return await Opleech.send_message(
             user_id,
-            "Nomor Telepon Tidak Valid.\n\n❖ Mohon Mulai Kembali.",
+            "- الرقم غلط او ماكو حساب بهذا الرقم .
+            .",
             reply_markup=retry_key,
         )
 
     try:
         otp = await Opleech.ask(
             identifier=(message.chat.id, user_id, None),
-            text=f"❖ Mohon Masukkan Kode OTP Yang Telah Di Kirim Ke {phone_number}.\n\n❖ Jika OTP Adalah <code>12345</code>, Mohon Masukkan Menggunakan Spasi Disetiap Karakter.\n\n❖ Contoh <code>1 2 3 4 5.</code>",
+            text=f"- تمام حب هذا رقمك {phone_number} \n- هسه دزلي الكود بس شرط \n\n- يكون بأرقام مفصوله كمثال : 2 7 3 2 4 ",
             filters=filters.text,
             timeout=600,
         )
@@ -115,7 +116,7 @@ async def gen_session(
     except ListenerTimeout:
         return await Opleech.send_message(
             user_id,
-            "Limit Setiap 5 Menit.\n\n❖ Mohon Mulai Kembali.",
+            "- وين رحت ترى تأخرت .",
             reply_markup=retry_key,
         )
 
@@ -128,27 +129,27 @@ async def gen_session(
     except (PhoneCodeInvalid, PhoneCodeInvalidError, PhoneCodeInvalid1):
         return await Opleech.send_message(
             user_id,
-            "OTP Yang Anda Masukkan <b>Salah.</b>\n\n❖ Mohon Mulai Kembali.",
+            "- الكود غلط .",
             reply_markup=retry_key,
         )
     except (PhoneCodeExpired, PhoneCodeExpiredError, PhoneCodeExpired1):
         return await Opleech.send_message(
             user_id,
-            "OTP Yang Anda Masukkan <b>Kedaluarsa.</b>\n\n❖ Mohon Mulai Kembali.",
+            "- انتهت صلاحية الكود .",
             reply_markup=retry_key,
         )
     except (SessionPasswordNeeded, SessionPasswordNeededError, SessionPasswordNeeded1):
         try:
             pwd = await Opleech.ask(
                 identifier=(message.chat.id, user_id, None),
-                text="❖ Mohon Masukkan 2 step verification password untuk melanjutkan √",
+                text="- ارسل لي التحقق بخطوتين .",
                 filters=filters.text,
                 timeout=300,
             )
         except ListenerTimeout:
             return Opleech.send_message(
                 user_id,
-                "Limit Setiap 5 Menit.\n\n❖ Mohon Mulai Kembali.",
+                "- وين رحت ترى تأخرت .",
                 reply_markup=retry_key,
             )
 
@@ -164,7 +165,7 @@ async def gen_session(
         except (PasswordHashInvalid, PasswordHashInvalidError, PasswordHashInvalid1):
             return await Opleech.send_message(
                 user_id,
-                "Password Yang Anda Masukkan <b>Salah<b>.\n\n❖ Mohon Mulai Kembali.",
+                "- باسورد تحقق بخطوتين غلط حب .",
                 reply_markup=retry_key,
             )
 
@@ -172,7 +173,7 @@ async def gen_session(
         return await Opleech.send_message(user_id, f"Error: <code>{str(ex)}</code>")
 
     try:
-        txt = "⎙ Ini Adalah {0} String Session Anda\n\n<code>{1}</code>\n\n🦋 A String Session Bot by Cihut Bot\n☠ <b>Note :</b> Jangan Bagikan String Session Kepada Siapapun"
+        txt = "- تم استخراج {0} بنجاح {1} \n\n- المطور : @RR8R9 \n-قناة المطور : @xl444"
         if telethon:
             string_session = client.session.save()
             await client.send_message(
@@ -196,12 +197,12 @@ async def gen_session(
         await client.disconnect()
         await Opleech.send_message(
             chat_id=user_id,
-            text=f"⎙ Berhasil Membuat {ty} String Session √\n\n❖ Silahkan Cek Di Pesan Tersimpan.",
+            text=f"- تم استخراج {ty} بنجاح .\n- تم الكود الى رسائلك المحفوضة .",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Pergi Ke Pesan Tersimpan",
+                            text="- الرسائل المحفوضة .",
                             url=f"tg://openmessage?user_id={user_id}",
                         )
                     ]
@@ -213,19 +214,19 @@ async def gen_session(
         pass
 
 async def cancelled(message):
-    if "/cancel" in message.text:
+    if "الغاء" in message.text:
         await message.reply_text(
-            "Cancelled the ongoing string generation process..", reply_markup=retry_key
+            "- تم الإلغاء بنجاح .", reply_markup=retry_key
         )
         return True
-    elif "/restart" in message.text:
+    elif "ريستارت" in message.text:
         await message.reply_text(
-            "Successfully restarted this bot.", reply_markup=retry_key
+            "- تم اعادة تشغيل البوت .", reply_markup=retry_key
         )
         return True
     elif message.text.startswith("/"):
         await message.reply_text(
-            "Cancelled the ongoing string generation process..", reply_markup=retry_key
+            "- تم الإلغاء بنجاح .", reply_markup=retry_key
         )
         return True
     else:
