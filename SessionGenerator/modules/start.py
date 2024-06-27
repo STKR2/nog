@@ -1,5 +1,5 @@
-# Generate Session In Your Telegram premium @Opleech
-# Copyright (c) 2023 WOODcraft
+
+
 from pyrogram import filters
 from pyrogram.types import Message
 from config import OWNER_ID
