@@ -1,14 +1,14 @@
 
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from config import SUPPORT_CHAT, OWNER_ID
+from config import SUPPORT_CHAT
 
 keyboard = InlineKeyboardMarkup(
     [
         [InlineKeyboardButton(text="- استخرج الان .", callback_data="gensession")],
         [
-            InlineKeyboardButton(text="- مالك البوت .", url=f"tg://user?id={OWNER_ID}"),
-            InlineKeyboardButton(text="- قناة التحديثات .", url=SUPPORT_CHAT),
+            InlineKeyboardButton(text="- مالك البوت .", url=f"https://t.me/RR8R9"),
+            InlineKeyboardButton(text="- قناة التحديثات .", url="https://t.me/Xl444"),
         ],
     ]
 )
@@ -20,7 +20,7 @@ gen_key = InlineKeyboardMarkup(
             InlineKeyboardButton(text="- ثليثون .", callback_data="telethon")
         ],
         [
-            InlineKeyboardButton(text="- مالك البوت .", url=f"tg://user?id={OWNER_ID}")
+            InlineKeyboardButton(text="- مالك البوت .", url=f"https://t.me/RR8R9")
         ]
     ]
 )
