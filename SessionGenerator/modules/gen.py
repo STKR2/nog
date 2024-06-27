@@ -45,7 +45,7 @@ async def gen_session(
     else:
         ty = f"Pyrogram V2"
 
-    await message.reply_text(f"Trying to start {ty} Session generator...")
+    await message.reply_text(f"")
 
     api_id = API_ID
     api_hash = API_HASH
@@ -53,7 +53,7 @@ async def gen_session(
     try:
         phone_number = await Opleech.ask(
             identifier=(message.chat.id, user_id, None),
-            text="❖ Masukkan Nomor Telepon, contoh : +628231234567:",
+            text="- الان ارسل لي رقمك \n- على سبيل المثال : +9640000000000",
             filters=filters.text,
             timeout=300,
         )
@@ -68,7 +68,7 @@ async def gen_session(
         return
     phone_number = phone_number.text
 
-    await Opleech.send_message(user_id, "❖ Mencoba Mengirimkan OTP Ke Nomor Anda...")
+    await Opleech.send_message(user_id, "- يتم التحقق من الرقم .")
     if telethon:
         client = TelegramClient(StringSession(), api_id, api_hash)
     elif old_pyro:
