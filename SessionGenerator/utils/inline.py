@@ -15,17 +15,21 @@ keyboard = InlineKeyboardMarkup(
 )
 
 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from config import OWNER_ID
+
 gen_key = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(text="🦋 𝐏𝐲𝐫𝐨𝐠𝐫𝐚𝐦 𝐯2 🦋", callback_data="pyrogram1"),
-            InlineKeyboardButton(text="🌼 𝐓𝐞𝐥𝐞𝐭𝐡𝐨𝐧 🌼", callback_data="telethon"),
+            InlineKeyboardButton(text="🌼 𝐓𝐞𝐥𝐞𝐭𝐡𝐨𝐧 🌼", callback_data="telethon")
         ],
         [
             InlineKeyboardButton(text="🔹 𝐎𝐰𝐧𝐞𝐫 🔹", url=f"tg://user?id={OWNER_ID}")
         ]
     ]
-    
+)
+
 retry_key = InlineKeyboardMarkup(
     [[InlineKeyboardButton(text="⚡️ Coba Lagi ⚡️", callback_data="gensession")]]
 )
