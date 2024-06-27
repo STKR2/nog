@@ -8,7 +8,7 @@ from SessionGenerator import Opleech
 from SessionGenerator.utils import get_served_users
 
 
-@Opleech.on_message(filters.command(["stats", "users"]) & filters.user(OWNER_ID))
+@Opleech.on_message(filters.command(["الاحصائيات", "users"]) & filters.user(OWNER_ID))
 async def get_stats(_, message: Message):
     users = len(await get_served_users())
-    await message.reply_text(f"Current stats of {Opleech.name} :\n\n {users} users")
+    await message.reply_text(f"- بوتك {Opleech.name} :\n\n {users} مستخدم")
