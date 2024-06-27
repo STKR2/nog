@@ -16,7 +16,7 @@ async def cb_choose(_, cq: CallbackQuery):
     query = cq.matches[0].group(1)
     if query == "gensession":
         return await cq.message.reply_text(
-            text="<b>❖ 𝖲𝗂𝗅𝖺𝗁𝗄𝖺𝗇 𝖯𝗂𝗅𝗂𝗁 𝖲𝗍𝗋𝗂𝗇𝗀 𝖲𝖾𝗌𝗌𝗂𝗈𝗇 𝖸𝖺𝗇𝗀 𝖠𝗄𝖺𝗇 𝖣𝗂𝗀𝗎𝗇𝖺𝗄𝖺𝗇 √</b>",
+            text="<b>❖ عزيزي الان اكمل الاستخراج واختر ماتريد استخراجة . √</b>",
             reply_markup=gen_key,
         )
     elif query.startswith("pyrogram") or query.startswith("telethon"):
