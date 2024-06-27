@@ -1,11 +1,8 @@
-
-
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from config import OWNER_ID
 from SessionGenerator import Opleech
 from SessionGenerator.utils import add_served_user, keyboard
-
 
 @Opleech.on_message(filters.command("start") & filters.private & filters.incoming)
 async def f_start(_, message: Message):
@@ -13,8 +10,9 @@ async def f_start(_, message: Message):
         text=f"""-  تم تحديث بوت الاستخراج الجديد .
 - البوت يشتغل على كل سورسات البايروجرام  .
 
-- المطور الوحيد : [by developer](tg://user?id={OWNER_ID})""",
+- المطور الوحيد : <a href="tg://user?id={OWNER_ID}">by developer</a>""",
         reply_markup=keyboard,
         disable_web_page_preview=True,
+        parse_mode="html"
     )
     await add_served_user(message.from_user.id)
