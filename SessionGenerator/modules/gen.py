@@ -39,13 +39,13 @@ async def gen_session(
     message, user_id: int, telethon: bool = False, old_pyro: bool = False
 ):
     if telethon:
-        ty = f"Telethon"
+        ty = f"ثليثون"
     elif old_pyro:
         ty = f""
     else:
-        ty = f"Pyrogram V2"
+        ty = f"بايروجرام"
 
-    await message.reply_text(f"- لقد قمت بالضغط على **{ty}** .")
+    await message.reply_text(f"- لقد قمت بالضغط على {ty} .")
 
     api_id = API_ID
     api_hash = API_HASH
