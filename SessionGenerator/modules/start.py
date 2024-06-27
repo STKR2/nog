@@ -13,6 +13,6 @@ async def f_start(_, message: Message):
 - المطور الوحيد : [{OWNER_ID}](tg://user?id={OWNER_ID})""",
         reply_markup=keyboard,
         disable_web_page_preview=True,
-        parse_mode="markdown"
+        parse_mode="markdownv2"
     )
     await add_served_user(message.from_user.id)
