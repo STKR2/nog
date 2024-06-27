@@ -1,4 +1,3 @@
-#YT : https://www.youtube.com/@ultroidofficial
 import asyncio
 
 from pyrogram import Client, filters
@@ -32,10 +31,9 @@ from telethon.sessions import StringSession
 from telethon.tl.functions.channels import JoinChannelRequest
 from pyromod.listen.listen import ListenerTimeout
 
-from config import SUPPORT_CHAT
+from config import SUPPORT_CHAT, API_ID, API_HASH
 from SessionGenerator import Opleech
 from SessionGenerator.utils import retry_key
-
 
 async def gen_session(
     message, user_id: int, telethon: bool = False, old_pyro: bool = False
@@ -43,62 +41,14 @@ async def gen_session(
     if telethon:
         ty = f"Telethon"
     elif old_pyro:
-        ty = f"Pyrogramm V1"
+        ty = f"Pyrogram V1"
     else:
         ty = f"Pyrogram V2"
 
     await message.reply_text(f"Trying to start {ty} Session generator...")
 
-    try:
-        api_id = await Opleech.ask(
-            identifier=(message.chat.id, user_id, None),
-            text="❖ Mohon Masukkan API_ID:",
-            filters=filters.text,
-            timeout=300,
-        )
-    except ListenerTimeout:
-        return await Opleech.send_message(
-            user_id,
-            "Limit Setiap 5 Menit.\n\n❖ Mohon Mulai Kembali.",
-            reply_markup=retry_key,
-        )
-
-    if await cancelled(api_id):
-        return
-
-    try:
-        api_id = int(api_id.text)
-    except ValueError:
-        return await Opleech.send_message(
-            user_id,
-            "API_ID Yang Anda Masukkan Tidak Valid.\n\n❖ Mohon Mulai Kembali.",
-            reply_markup=retry_key,
-        )
-
-    try:
-        api_hash = await Opleech.ask(
-            identifier=(message.chat.id, user_id, None),
-            text="❖ Sekarang Masukkan API_HASH √",
-            filters=filters.text,
-            timeout=300,
-        )
-    except ListenerTimeout:
-        return await Opleech.send_message(
-            user_id,
-            "Limit Setiap 5 Menit.\n\n❖ Mohon Mulai Kembali.",
-            reply_markup=retry_key,
-        )
-
-    if await cancelled(api_hash):
-        return
-    api_hash = api_hash.text
-
-    if len(api_hash) < 30:
-        return await Opleech.send_message(
-            user_id,
-            "API_HASH Yang Anda Masukkan Tidak Valid.\n\n❖ Mohon Mulai Kembali.",
-            reply_markup=retry_key,
-        )
+    api_id = API_ID
+    api_hash = API_HASH
 
     try:
         phone_number = await Opleech.ask(
@@ -261,7 +211,6 @@ async def gen_session(
         )
     except:
         pass
-
 
 async def cancelled(message):
     if "/cancel" in message.text:
