@@ -9,7 +9,7 @@ async def f_start(_, message: Message):
         text=f"""-  تم تحديث بوت الاستخراج الجديد .
 - البوت يشتغل على كل سورسات البايروجرام  .
 
-- المطور الوحيد : [by developer](https://t.me/RR8R9)""",
+- المطور الوحيد : @RR8R9""",
         reply_markup=keyboard,
         disable_web_page_preview=True,
     )
