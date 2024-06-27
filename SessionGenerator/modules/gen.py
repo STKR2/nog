@@ -99,8 +99,7 @@ async def gen_session(
     except (PhoneNumberInvalid, PhoneNumberInvalidError, PhoneNumberInvalid1):
         return await Opleech.send_message(
             user_id,
-            "- الرقم غلط او ماكو حساب بهذا الرقم .
-            .",
+            "- الرقم غلط او ماكو حساب بهذا الرقم .",
             reply_markup=retry_key,
         )
 
