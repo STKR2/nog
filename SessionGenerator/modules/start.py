@@ -10,9 +10,9 @@ async def f_start(_, message: Message):
         text=f"""-  تم تحديث بوت الاستخراج الجديد .
 - البوت يشتغل على كل سورسات البايروجرام  .
 
-- المطور الوحيد : <a href="tg://user?id={OWNER_ID}">by developer</a>""",
+- المطور الوحيد : [{OWNER_ID}](tg://user?id={OWNER_ID})""",
         reply_markup=keyboard,
         disable_web_page_preview=True,
-        parse_mode="html"
+        parse_mode="markdown"
     )
     await add_served_user(message.from_user.id)
