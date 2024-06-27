@@ -172,7 +172,7 @@ async def gen_session(
         return await Opleech.send_message(user_id, f"Error: <code>{str(ex)}</code>")
 
     try:
-        txt = "- تم استخراج {0} بنجاح {1} \n\n- المطور : @RR8R9 \n-قناة المطور : @xl444"
+        txt = "- تم استخراج {0} بنجاح \n\n {1} \n\n- المطور : @RR8R9 \n- قناة المطور : @xl444"
         if telethon:
             string_session = client.session.save()
             await client.send_message(
@@ -196,12 +196,12 @@ async def gen_session(
         await client.disconnect()
         await Opleech.send_message(
             chat_id=user_id,
-            text=f"- تم استخراج {ty} بنجاح .\n- تم الكود الى رسائلك المحفوضة .",
+            text=f"- تم استخراج {ty} بنجاح .",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="- الرسائل المحفوضة .",
+                            text="- تم حفظ الكود هنا .",
                             url=f"tg://openmessage?user_id={user_id}",
                         )
                     ]
