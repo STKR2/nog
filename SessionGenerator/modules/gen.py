@@ -45,7 +45,7 @@ async def gen_session(
     else:
         ty = f"Pyrogram V2"
 
-    await message.reply_text(f"")
+    await message.reply_text(f"- لقد قمت بالضغط على **{ty}** .")
 
     api_id = API_ID
     api_hash = API_HASH
