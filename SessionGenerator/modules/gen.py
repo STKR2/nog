@@ -35,14 +35,13 @@ from config import SUPPORT_CHAT, API_ID, API_HASH
 from SessionGenerator import Opleech
 from SessionGenerator.utils import retry_key
 
-
 async def gen_session(
     message, user_id: int, telethon: bool = False, old_pyro: bool = False
 ):
     if telethon:
         ty = f"Telethon"
     elif old_pyro:
-        ty = f"Pyrogram V1"
+        ty = f""
     else:
         ty = f"Pyrogram V2"
 
@@ -124,8 +123,6 @@ async def gen_session(
     try:
         if telethon:
             await client.sign_in(phone_number, otp, password=None)
-        elif old_pyro:
-            await client.sign_in(phone_number, code.phone_code_hash, otp)
         else:
             await client.sign_in(phone_number, code.phone_code_hash, otp)
     except (PhoneCodeInvalid, PhoneCodeInvalidError, PhoneCodeInvalid1):
@@ -162,8 +159,6 @@ async def gen_session(
         try:
             if telethon:
                 await client.sign_in(password=pwd)
-            elif old_pyro:
-                await client.check_password(password=pwd)
             else:
                 await client.check_password(password=pwd)
         except (PasswordHashInvalid, PasswordHashInvalidError, PasswordHashInvalid1):
