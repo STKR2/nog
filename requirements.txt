@@ -1,4 +1,4 @@
-
+pyromod==0.5.1
 oldpyro==0.1.0
 pyrogram==2.0.106
 python-dotenv==1.0.0
