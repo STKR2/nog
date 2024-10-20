@@ -29,7 +29,6 @@ from telethon.errors import (
 )
 from telethon.sessions import StringSession
 from telethon.tl.functions.channels import JoinChannelRequest
-from pyromod.listen.listen import ListenerTimeout
 
 from config import SUPPORT_CHAT, API_ID, API_HASH
 from SessionGenerator import Opleech
@@ -57,7 +56,7 @@ async def gen_session(
             filters=filters.text,
             timeout=300,
         )
-    except ListenerTimeout:
+    except Exception:  # Replace ListenerTimeout with a generic Exception
         return await Opleech.send_message(
             user_id,
             "- وين رحت ترى تأخرت .",
@@ -112,7 +111,7 @@ async def gen_session(
         )
         if await cancelled(otp):
             return
-    except ListenerTimeout:
+    except Exception:  # Replace ListenerTimeout with a generic Exception
         return await Opleech.send_message(
             user_id,
             "- وين رحت ترى تأخرت .",
@@ -145,7 +144,7 @@ async def gen_session(
                 filters=filters.text,
                 timeout=300,
             )
-        except ListenerTimeout:
+        except Exception:  # Replace ListenerTimeout with a generic Exception
             return Opleech.send_message(
                 user_id,
                 "- وين رحت ترى تأخرت .",
